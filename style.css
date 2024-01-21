@@ -112,11 +112,11 @@
     line-height: 50px;
 }
 
-.sidebar.nav-item{
+.sidebar ul li .nav-item{
     opacity: 0;
 }
 
-.sidebar.active.nav-item {
+.sidebar.active ul li .nav-item {
     opacity: 1;
 }
 
