@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <title>FindMe</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <link href="./leaflet_demo.css" type="text/css" rel="stylesheet" />
+    <script src="./script.js" charset="utf-8" defer></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+
+</head>
+
+<body>
+    <div class="sidebar">
+            <div class="top">
+                <div class="logo" style="color: #ffff;">
+                    <span>FindMe</span>
+                </div>
+                <i class="bx bx-menu" id="btn"></i>
+            </div>
+        <div class="user">
+            <img src=".assets/Findme.png" alt="logo" class="user-img">
+            <div>
+                <p class="bold" id="user-name">Peter Lenon</p>
+                <p id="user-sport">Soccer</p>
+            </div>
+        </div>
+        <ul>
+            <li>
+                <a href="#">
+                    <i class="bx bxs-map"></i>
+                    <span class='nav-item'>Change Location</span>
+                </a>
+                <span class="tooltip">Change Location</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-cricket-ball'></i>
+                    <span class='nav-item'>Add Sport</span>
+                </a>
+                <span class="tooltip">Add Sport</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-group' ></i>
+                    <span class='nav-item'>Invite Friend</span>
+                </a>
+                <span class="tooltip">Invite Friend</span>
+            </li>
+        </ul>
+    </div>
+    
+
+    <div class="main-content">
+        <div id="map" style="height: 100vh;"></div>
+    </div>
+</body>
+<script>
+    let btn = document.querySelector('#btn');
+    let sidebar = document.querySelector('.sidebar');
+
+    btn.onclick = function(){
+        sidebar.classList.toggle('active');
+    }
+</script>
+
+</html>
