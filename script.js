@@ -15,7 +15,7 @@ function addTileLayer(Map) {
 }
 
 function addMarker(lat, long, personInfo) {
-  let point = L.marker([lat, long]).addTo(myMap);
+  let point = L.marker([lat, long], {icon: myIcon}).addTo(Map);
   point.bindPopup(`<b>${personInfo}<b>`);
 }
 
@@ -28,3 +28,25 @@ let sidebar = document.querySelector(".sidebar");
 btn.onclick = function () {
   sidebar.classList.toggle("active");
 };
+
+
+// Right Click Menu
+const contextMenu = document.querySelector(".right-click-wrapper");
+const styledMap = document.querySelector("#map");
+document.addEventListener("contextmenu", e => {
+  e.preventDefault();
+  let x = e.offsetX, y = e.offsetY;
+  if (e.target == styledMap){
+    console.log("map clicked");
+    contextMenu.style.left = `${x}px`
+    contextMenu.style.top = `${y}px`
+    contextMenu.style.visibility = "visible";
+  }
+  else {
+    contextMenu.style.left = `${x}px`
+    contextMenu.style.top = `${y}px`
+    contextMenu.style.visibility = "visible";
+    console.log("right clicked");
+
+  }
+})

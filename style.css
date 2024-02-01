@@ -148,4 +148,35 @@
     transition: all 0.5s ease;
     width: calc(100% - 80px);
     padding: 1rem;
+    z-index: 2;
+}
+
+.right-click-wrapper {
+    width: 300px;
+    background: #fff;
+    border-radius: 10px;
+    z-index: 4;
+    visibility: hidden;
+    position: absolute;
+}
+.right-click-menu {
+    padding: 10px 12px;
+}
+.right-click-menu li{
+    display: flex;
+    align-items: center;
+    padding: 0 5px 0 10px;
+    list-style: none;
+    font-size: 22px; 
+    height: 50px;
+    border-radius: 5px;
+    margin-bottom: 2px;
+    cursor: pointer;
+}
+.right-click-menu li:hover{
+    background: #f2f2f2;
+}
+.right-click-menu li span {
+    font-size: 19px;
+    margin-left: 8px;
 }
