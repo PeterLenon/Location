@@ -180,3 +180,51 @@
     font-size: 19px;
     margin-left: 8px;
 }
+
+.location-menu-wrapper {
+    width: 300px;
+    background: #fff;
+    border-radius: 10px;
+    z-index: 4;
+    position: absolute;
+
+
+    border-radius: 35px;
+    border-color: black;
+    border-style: solid;
+    border-width: 10px;
+    width: 90%;
+    max-width: 450px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 50px 60px 70px;
+    text-align: center;
+    justify-content: baseline;
+
+    visibility: hidden;
+}
+
+.location-menu {
+    padding: 10px 12px;
+}
+
+.location-menu span {
+    position: fixed;
+    width: 35%;
+}
+
+#location-sighting-type {
+    position: relative;
+    margin-top: 50px;
+    height: 30px;
+}
+
+#location-post-button {
+    position: relative;
+    margin-top: 50px;
+    height: 50%;
+    width: 100%;
+
+
+}
