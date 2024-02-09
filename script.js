@@ -45,12 +45,24 @@ function getCoordinates() {
 }
 
 
+const sighting_dropdown = document.querySelector(".location-sighting-dropdown-wrapper");
+const sighting_list = document.querySelector(".location-sighting-list");
+const sighting_selected = document.querySelector(".location-sighting-selected");
+
+sighting_dropdown.addEventListener("click", ()=>{
+  sighting_list.classList.toggle('location-sighting-show');
+})
+
+sighting_list.addEventListener("click", (e)=>{
+  const text = e.target.querySelector(".location-sighting-text");
+
+  sighting_selected.innerHTML = text.innerHTML;
+})
 
 // Right Click Menu
 const contextMenu = document.querySelector(".right-click-wrapper");
 
 const addLocationMenu = document.querySelector(".location-menu-wrapper");
-const sightingTypeInput = document.querySelector("#location-sighting-type");
 const addLocationPostButton = document.querySelector("#location-post-button");
 
 const styledMap = document.querySelector("#map");
@@ -80,6 +92,9 @@ document.addEventListener("contextmenu", e => {
 
 addLocationPostButton.onclick = function () {
 
-  addMarker(getCoordinates().mapLat, getCoordinates().mapLng, sightingTypeInput.value);
+  addMarker(getCoordinates().mapLat, getCoordinates().mapLng, sighting_selected.innerHTML);
   addLocationMenu.style.visibility = "hidden";
 }
+
+
+
