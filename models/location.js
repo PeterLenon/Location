@@ -6,7 +6,12 @@ const locationSchema = new mongoose.Schema({
         required: true
 
     },
-    sightingCoordinates: {
+    sightingCoordinatesX: {
+        type: String,
+        required: true
+
+    },
+    sightingCoordinatesY: {
         type: String,
         required: true
 

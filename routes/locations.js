@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Location = require('../models/location')
 
+
 //getting all
 router.get('/', async (req, res) => {
     try {
@@ -20,7 +21,8 @@ router.get('/:id', getLocation, (req, res) => {
 router.post('/', async (req, res) => {
     const location = new Location({
         sightingType: req.body.sightingType,
-        sightingCoordinates: req.body.sightingCoordinates,
+        sightingCoordinatesX: req.body.sightingCoordinatesX,
+        sightingCoordinatesY: req.body.sightingCoordinatesY,
         sightingUser: req.body.sightingUser
     })
 
@@ -39,8 +41,11 @@ router.patch('/:id', getLocation, async (req, res) => {
     if (req.body.sightingType != null) {
         res.location.sightingType = req.body.sightingType
     }
-    if (req.body.sightingCoordinates != null) {
-        res.location.sightingCoordinates = req.body.sightingCoordinates
+    if (req.body.sightingCoordinatesX != null) {
+        res.location.sightingCoordinatesX = req.body.sightingCoordinatesX
+    }
+    if (req.body.sightingCoordinatesY != null) {
+        res.location.sightingCoordinatesY = req.body.sightingCoordinatesY
     }
     if (req.body.sightingUser != null) {
         res.location.sightingUser = req.body.sightingUser

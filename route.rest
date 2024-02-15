@@ -22,16 +22,17 @@ Content-Type: application/json
 
 ###
 
-PATCH http://localhost:3000/locations/65cbd7540f281a9de580382e
+PATCH http://localhost:3000/locations/65ce756af191151166ade27d
 Content-Type: application/json
 
 {
-    "sightingType": "Person",
-    "sightingCoordinates": "Name",
+    "sightingType": "CryptidTest",
+    "sightingCoordinatesX": "37.61",
+    "sightingCoordinatesY": "-122.011",
     "sightingUser": "User"
 }
 
 
 ###
 
-DELETE http://localhost:3000/locations/65cbd7540f281a9de580382e
+DELETE http://localhost:3000/locations/65ce756af191151166ade27d

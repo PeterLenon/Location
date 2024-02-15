@@ -32,6 +32,37 @@ btn.onclick = function () {
 
 
 
+function databasePostPoint(sightingType, sightingCoordinatesX, sightingCoordinatesY, sightingUser) {
+  const postData = {
+    "sightingType": sightingType,
+    "sightingCoordinatesX": sightingCoordinatesX,
+    "sightingCoordinatesY": sightingCoordinatesY,
+    "sightingUser": sightingUser
+  };
+    
+  fetch('http://localhost:3000/locations', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(postData),
+})
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log('Data received from server:', data);
+  })
+  .catch(error => {
+    console.error('There was a problem with the fetch operation:', error);
+  });
+}
+
+
+
 
 let cursorCoordinates = null;
 Map.on('mousemove', function(event) {
@@ -94,7 +125,32 @@ addLocationPostButton.onclick = function () {
 
   addMarker(getCoordinates().mapLat, getCoordinates().mapLng, sighting_selected.innerHTML);
   addLocationMenu.style.visibility = "hidden";
+
+  databasePostPoint(sighting_selected.innerHTML, getCoordinates().mapLat, getCoordinates().mapLng, "USER")
 }
 
 
 
+
+
+
+
+
+// Plot locations on map when it loads
+fetch('http://localhost:3000/locations')
+.then(response => {
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+  return response.json();
+})
+.then(data => {
+  for (const obj of data) {
+    console.log(obj);
+    addMarker(obj.sightingCoordinatesX, obj.sightingCoordinatesY, obj.sightingType);
+  }
+  
+})
+.catch(error => {
+  console.error('There was a problem with the fetch operation:', error);
+});
