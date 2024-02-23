@@ -38,7 +38,7 @@ signinButton.onclick = () => {
     } else {
       document
         .getElementById("wrong-credetials-div")
-        .innerHTML("wrong password or email");
+        .innerHTML("<h5>wrong password or email</h5>");
     }
   } catch (error) {}
 };
@@ -58,7 +58,7 @@ signupButton.onclick = () => {
     if (response.ok) {
       document
         .getElementById("wrong-credetials-div")
-        .innerHTML("account with email already exists");
+        .innerHTML("<h5>account with email already exists</h5>");
     } else {
       fetch("http://localhost:3000/users/", {
         method: "POST",
