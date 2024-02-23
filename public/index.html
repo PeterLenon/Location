@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>FindMe</title>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="./script.js" charset="utf-8" defer></script>
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+      integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+      crossorigin=""
+    ></script>
+  </head>
+
+  <body>
+
+    <div class="blur">
+      
+    </div>
+
+    <div class="form-box">
+      <h1>Sign In</h1>
+      <p>New User? <a href="./signup.html"> Sign Up Here</a></p>
+      <form action="">
+          <div class="input-group">
+              <div class="input-field">
+                  <h3>Email:</h3>
+                  <input id="email-signin-input" type="email" placeholder="enter your email">
+              </div>
+              <div class="input-field">
+                  <h3>Password:</h3>
+                  <input id="password-signin-input" type="password" placeholder="enter your password">
+              </div>
+              <p>Lost Password <a href="">Click Here</a></p>
+          </div>
+          <div class="button-field">
+              <button id="signin-button" type="button">Sign In</button>
+          </div>
+      </form>
+    </div>
+
+
+
+
+    <div class="right-click-wrapper">
+      <div class="right-click-menu">
+        <ul id="menu">
+          <li class="right-click-item" id="right-click-location">
+            <span>Add Location</span>
+          </li>
+          <li class="right-click-item" id="right-click-settings">
+            <span>Settings</span>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+
+    <div class="location-menu-wrapper">
+        <span>Add a Sighting Location</span>
+
+        <div class="location-sighting-option">
+
+          <span id="text-sighting-type">Type of Sighting</span>
+
+          <div class="location-sighting-dropdown-wrapper">
+            <div class="location-sighting-dropdown">
+              <div class="location-sighting-selected">Ghost</div>
+            </div>
+            <div class="location-sighting-list">
+              
+              <div class="location-sighting-item">
+                <span class="location-sighting-text">UFO</span>
+              </div>
+              <div class="location-sighting-item">
+                <span class="location-sighting-text">Ghost</span>
+              </div>
+              <div class="location-sighting-item">
+                <span class="location-sighting-text">Folklore/Mythological</span>
+              </div>
+              <div class="location-sighting-item">
+                <span class="location-sighting-text">Aquatic Cryptid</span>
+              </div>
+              <div class="location-sighting-item">
+                <span class="location-sighting-text">Terrestrial Cryptid</span>
+              </div>
+              <div class="location-sighting-item">
+                <span class="location-sighting-text">Hominid Cryptid</span>
+              </div>
+              <div class="location-sighting-item">
+                <span class="location-sighting-text">Flying Cryptid</span>
+              </div>
+
+              
+        
+
+            </div>
+          </div>
+        </div>
+
+        <button id="location-post-button" type="button">Post</button>
+    </div>
+
+
+    <div class="sidebar">
+      <div class="top">
+        <div class="logo" style="color: #ffff">
+          <span>FindMe</span>
+        </div>
+        <i class="bx bx-menu" id="btn"></i>
+      </div>
+      <div class="user">
+        <img src="assets/Findme.png" alt="logo" class="user-img" />
+        <div>
+          <p class="bold" id="user-name">User Name</p>
+          <p id="user-sport">Soccer</p>
+        </div>
+      </div>
+      <ul>
+        <li>
+          <a href="#">
+            <i class="bx bxs-map"></i>
+            <span class="nav-item">Change Location</span>
+          </a>
+          <span class="tooltip">Change Location</span>
+        </li>
+        <li>
+          <a href="#">
+            <i class="bx bx-cricket-ball"></i>
+            <span class="nav-item">Add Event</span>
+          </a>
+          <span class="tooltip">Add Event</span>
+        </li>
+        <li>
+          <a href="#">
+            <i class="bx bx-group"></i>
+            <span class="nav-item">Invite Friend</span>
+          </a>
+          <span class="tooltip">Invite Friend</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="main-content">
+      <div id="map" style="height: 100vh"></div>
+    </div>
+  </body>
+</html>
