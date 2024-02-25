@@ -24,34 +24,36 @@
   </head>
 
   <body>
-
-    <div class="blur">
-      
-    </div>
+    <div class="blur"></div>
 
     <div class="form-box">
       <h1>Sign In</h1>
       <p>New User? <a href="./signup.html"> Sign Up Here</a></p>
       <form action="">
-          <div class="input-group">
-              <div class="input-field">
-                  <h3>Email:</h3>
-                  <input id="email-signin-input" type="email" placeholder="enter your email">
-              </div>
-              <div class="input-field">
-                  <h3>Password:</h3>
-                  <input id="password-signin-input" type="password" placeholder="enter your password">
-              </div>
-              <p>Lost Password <a href="">Click Here</a></p>
+        <div class="input-group">
+          <div class="input-field">
+            <h3>Email:</h3>
+            <input
+              id="email-signin-input"
+              type="email"
+              placeholder="enter your email"
+            />
           </div>
-          <div class="button-field">
-              <button id="signin-button" type="button">Sign In</button>
+          <div class="input-field">
+            <h3>Password:</h3>
+            <input
+              id="password-signin-input"
+              type="password"
+              placeholder="enter your password"
+            />
           </div>
+          <p>Lost Password <a href="">Click Here</a></p>
+        </div>
+        <div class="button-field">
+          <button id="signin-button" type="button">Sign In</button>
+        </div>
       </form>
     </div>
-
-
-
 
     <div class="right-click-wrapper">
       <div class="right-click-menu">
@@ -63,55 +65,47 @@
             <span>Settings</span>
           </li>
         </ul>
-
       </div>
     </div>
 
     <div class="location-menu-wrapper">
-        <span>Add a Sighting Location</span>
+      <span>Add a Sighting Location</span>
 
-        <div class="location-sighting-option">
+      <div class="location-sighting-option">
+        <span id="text-sighting-type">Type of Sighting</span>
 
-          <span id="text-sighting-type">Type of Sighting</span>
-
-          <div class="location-sighting-dropdown-wrapper">
-            <div class="location-sighting-dropdown">
-              <div class="location-sighting-selected">Ghost</div>
+        <div class="location-sighting-dropdown-wrapper">
+          <div class="location-sighting-dropdown">
+            <div class="location-sighting-selected">Ghost</div>
+          </div>
+          <div class="location-sighting-list">
+            <div class="location-sighting-item">
+              <span class="location-sighting-text">UFO</span>
             </div>
-            <div class="location-sighting-list">
-              
-              <div class="location-sighting-item">
-                <span class="location-sighting-text">UFO</span>
-              </div>
-              <div class="location-sighting-item">
-                <span class="location-sighting-text">Ghost</span>
-              </div>
-              <div class="location-sighting-item">
-                <span class="location-sighting-text">Folklore/Mythological</span>
-              </div>
-              <div class="location-sighting-item">
-                <span class="location-sighting-text">Aquatic Cryptid</span>
-              </div>
-              <div class="location-sighting-item">
-                <span class="location-sighting-text">Terrestrial Cryptid</span>
-              </div>
-              <div class="location-sighting-item">
-                <span class="location-sighting-text">Hominid Cryptid</span>
-              </div>
-              <div class="location-sighting-item">
-                <span class="location-sighting-text">Flying Cryptid</span>
-              </div>
-
-              
-        
-
+            <div class="location-sighting-item">
+              <span class="location-sighting-text">Ghost</span>
+            </div>
+            <div class="location-sighting-item">
+              <span class="location-sighting-text">Folklore/Mythological</span>
+            </div>
+            <div class="location-sighting-item">
+              <span class="location-sighting-text">Aquatic Cryptid</span>
+            </div>
+            <div class="location-sighting-item">
+              <span class="location-sighting-text">Terrestrial Cryptid</span>
+            </div>
+            <div class="location-sighting-item">
+              <span class="location-sighting-text">Hominid Cryptid</span>
+            </div>
+            <div class="location-sighting-item">
+              <span class="location-sighting-text">Flying Cryptid</span>
             </div>
           </div>
         </div>
+      </div>
 
-        <button id="location-post-button" type="button">Post</button>
+      <button id="location-post-button" type="button">Post</button>
     </div>
-
 
     <div class="sidebar">
       <div class="top">
@@ -154,6 +148,15 @@
 
     <div class="main-content">
       <div id="map" style="height: 100vh"></div>
+    </div>
+
+    <div class="add-event-page">
+      <label for="text-sighting-type">Sighting Type:</label><br />
+      <input type="text" id="text-sighting-type" name="UFO" />
+      <br />
+      <label for="textbox">Enter your :</label><br />
+      <input type="datetime" id="sighting-date" name="now" />
+      <br />
     </div>
   </body>
 </html>
