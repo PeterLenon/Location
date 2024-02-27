@@ -14,31 +14,67 @@ function addTileLayer(Map) {
   ).addTo(Map);
 }
 
-function addMarker(lat, long, personInfo) {
-  let point = L.marker([lat, long]).addTo(Map);
+markerImages = {
+  "UFO": {
+    iconUrl: "../assets/icons/ufo-icon.png",
+    iconSize:     [20, 30], 
+    iconAnchor:   [10, 30],
+    popupAnchor:  [0, -30]
+  },
+  "Ghost": {
+    iconUrl: "../assets/icons/ghost-icon.png",
+    iconSize:     [20, 30], 
+    iconAnchor:   [10, 30],
+    popupAnchor:  [0, -30]
+  },
+  "Folklore/Mythological": {
+    iconUrl: "../assets/icons/folklore-icon.png",
+    iconSize:     [20, 30], 
+    iconAnchor:   [10, 30],
+    popupAnchor:  [0, -30]
+  },
+  "Aquatic Cryptid": {
+    iconUrl: "../assets/icons/aquatic-icon.png",
+    iconSize:     [20, 30], 
+    iconAnchor:   [10, 30],
+    popupAnchor:  [0, -30]
+  },
+  "Terrestrial Cryptid": {
+    iconUrl: "../assets/icons/terrestrial-icon.png",
+    iconSize:     [20, 30], 
+    iconAnchor:   [10, 30],
+    popupAnchor:  [0, -30]
+  },
+  "Hominid Cryptid": {
+    iconUrl: "../assets/icons/hominid-icon.png",
+    iconSize:     [20, 30], 
+    iconAnchor:   [10, 30],
+    popupAnchor:  [0, -30]
+  },
+  "Flying Cryptid": {
+    iconUrl: "../assets/icons/flying-icon.png",
+    iconSize:     [20, 30], 
+    iconAnchor:   [10, 30],
+    popupAnchor:  [0, -30]
+  }
+}
+
+
+
+function addMarker(lat, long, personInfo, imageType) {
+  const iconConfig = markerImages[imageType];
+  if (!iconConfig) {
+    console.error(`Icon configuration not found for ${imageType}`);
+    return;
+  }
+
+  const icon = L.icon(iconConfig);
+  const point = L.marker([lat, long], { icon }).addTo(Map);
   point.bindPopup(`<b>${personInfo}<b>`);
 }
 
-// let Map = setViewPoint("map", 32.302898, -90.183487, 12);
-// addTileLayer(Map);
-
-function setView_to_user_location() {
-  if ("geolocation" in navigator) {
-    navigator.geolocation.getCurrentPosition((position) => {
-      let Map = setViewPoint(
-        "map",
-        position.coords.latitude,
-        position.coords.longitude,
-        12
-      );
-      addTileLayer(Map);
-    });
-  } else {
-    let Map = setViewPoint("map", 32.302898, -90.183487, 12);
-    addTileLayer(Map);
-  }
-}
-setView_to_user_location();
+let Map = setViewPoint("map", 37.61, -122.011, 12);
+addTileLayer(Map);
 
 //this code toggles the sidebar
 let btn = document.querySelector("#btn");
@@ -47,66 +83,66 @@ btn.onclick = function () {
   sidebar.classList.toggle("active");
 };
 
-function databasePostPoint(
-  sightingType,
-  sightingCoordinatesX,
-  sightingCoordinatesY,
-  sightingUser
-) {
-  const postData = {
-    sightingType: sightingType,
-    sightingCoordinatesX: sightingCoordinatesX,
-    sightingCoordinatesY: sightingCoordinatesY,
-    sightingUser: sightingUser,
-  };
 
-  fetch("http://localhost:3000/locations", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(postData),
+
+
+function databasePostPoint(sightingType, sightingCoordinatesX, sightingCoordinatesY, sightingUser) {
+  const postData = {
+    "sightingType": sightingType,
+    "sightingCoordinatesX": sightingCoordinatesX,
+    "sightingCoordinatesY": sightingCoordinatesY,
+    "sightingUser": sightingUser
+  };
+    
+  fetch('http://localhost:3000/locations', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(postData),
+})
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
   })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return response.json();
-    })
-    .then((data) => {
-      console.log("Data received from server:", data);
-    })
-    .catch((error) => {
-      console.error("There was a problem with the fetch operation:", error);
-    });
+  .then(data => {
+    console.log('Data received from server:', data);
+  })
+  .catch(error => {
+    console.error('There was a problem with the fetch operation:', error);
+  });
 }
 
+
+
+
 let cursorCoordinates = null;
-Map.on("mousemove", function (event) {
-  cursorCoordinates = event.latlng;
+Map.on('mousemove', function(event) {
+    cursorCoordinates = event.latlng;
 });
 function getCoordinates() {
   return {
-    mapLat: cursorCoordinates.lat,
-    mapLng: cursorCoordinates.lng,
-  };
+    mapLat:cursorCoordinates.lat, 
+    mapLng:cursorCoordinates.lng
+  }
 }
 
-const sighting_dropdown = document.querySelector(
-  ".location-sighting-dropdown-wrapper"
-);
+
+const sighting_dropdown = document.querySelector(".location-sighting-dropdown-wrapper");
 const sighting_list = document.querySelector(".location-sighting-list");
 const sighting_selected = document.querySelector(".location-sighting-selected");
 
-sighting_dropdown.addEventListener("click", () => {
-  sighting_list.classList.toggle("location-sighting-show");
-});
+sighting_dropdown.addEventListener("click", ()=>{
+  sighting_list.classList.toggle('location-sighting-show');
+})
 
-sighting_list.addEventListener("click", (e) => {
+sighting_list.addEventListener("click", (e)=>{
   const text = e.target.querySelector(".location-sighting-text");
 
   sighting_selected.innerHTML = text.innerHTML;
-});
+})
 
 // Right Click Menu
 const contextMenu = document.querySelector(".right-click-wrapper");
@@ -115,64 +151,60 @@ const addLocationMenu = document.querySelector(".location-menu-wrapper");
 const addLocationPostButton = document.querySelector("#location-post-button");
 
 const styledMap = document.querySelector("#map");
-document.addEventListener("contextmenu", (e) => {
+document.addEventListener("contextmenu", e => {
   e.preventDefault();
-  let x = e.pageX,
-    y = e.pageY;
+  let x = e.pageX, y = e.pageY;
 
-  if (e.target == styledMap) {
-    contextMenu.style.left = `${x}px`;
-    contextMenu.style.top = `${y}px`;
+  if (e.target == styledMap){
+    contextMenu.style.left = `${x}px`
+    contextMenu.style.top = `${y}px`
     contextMenu.style.visibility = "visible";
 
     const addLocationButton = document.querySelector("#right-click-location");
     addLocationButton.onclick = function () {
       addLocationMenu.style.visibility = "visible";
       contextMenu.style.visibility = "hidden";
-    };
-  } else {
-    contextMenu.style.left = `${x}px`;
-    contextMenu.style.top = `${y}px`;
-    contextMenu.style.visibility = "visible";
+    }
   }
-});
+  else {
+    contextMenu.style.left = `${x}px`
+    contextMenu.style.top = `${y}px`
+    contextMenu.style.visibility = "visible";
+
+
+  }
+})
 
 addLocationPostButton.onclick = function () {
-  addMarker(
-    getCoordinates().mapLat,
-    getCoordinates().mapLng,
-    sighting_selected.innerHTML
-  );
+
+  addMarker(getCoordinates().mapLat, getCoordinates().mapLng, sighting_selected.innerHTML, sighting_selected.innerHTML);
   addLocationMenu.style.visibility = "hidden";
 
-  databasePostPoint(
-    sighting_selected.innerHTML,
-    getCoordinates().mapLat,
-    getCoordinates().mapLng,
-    "USER"
-  );
-};
+  databasePostPoint(sighting_selected.innerHTML, getCoordinates().mapLat, getCoordinates().mapLng, "USER")
+}
+
+
+
+
+
+
+
 
 // Plot locations on map when it loads
-fetch("http://localhost:3000/locations")
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-    return response.json();
-  })
-  .then((data) => {
-    for (const obj of data) {
-      console.log(obj);
-      addMarker(
-        obj.sightingCoordinatesX,
-        obj.sightingCoordinatesY,
-        obj.sightingType
-      );
-    }
-  })
-  .catch((error) => {
-    console.error("There was a problem with the fetch operation:", error);
-  });
-
-// //center map to users location on load
+fetch('http://localhost:3000/locations')
+.then(response => {
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+  return response.json();
+})
+.then(data => {
+  for (const obj of data) {
+    console.log(obj);
+    addMarker(obj.sightingCoordinatesX, obj.sightingCoordinatesY, obj.sightingType, obj.sightingType);
+  }
+  
+})
+.catch(error => {
+  console.error('There was a problem with the fetch operation:', error);
+});
