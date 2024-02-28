@@ -19,8 +19,7 @@ function addMarker(lat, long, personInfo) {
   point.bindPopup(`<b>${personInfo}<b>`);
 }
 
-// let Map = setViewPoint("map", 32.302898, -90.183487, 12);
-// addTileLayer(Map);
+//center map to users location on load or default is jackson, ms
 
 function setView_to_user_location() {
   if ("geolocation" in navigator) {
@@ -174,5 +173,3 @@ fetch("http://localhost:3000/locations")
   .catch((error) => {
     console.error("There was a problem with the fetch operation:", error);
   });
-
-// //center map to users location on load
