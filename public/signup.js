@@ -13,38 +13,10 @@ function getSignupInfo() {
     signinPassword: signinPassword,
   };
 }
-let User = getSignupInfo();
-
-const signinButton = document.getElementById("signin-button");
-signinButton.onclick = () => {
-  try {
-    const response = fetch("http://localhost:3000/users/", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: User.signinEmail,
-      }),
-    });
-    if (response.ok) {
-      if (response.password == User.signinPassword) {
-        window.location.href = "index.html";
-      } else {
-        document
-          .getElementById("wrong-credetials-div")
-          .innerHTML("wrong password or email");
-      }
-    } else {
-      document
-        .getElementById("wrong-credetials-div")
-        .innerHTML("<h5>wrong password or email</h5>");
-    }
-  } catch (error) {}
-};
 
 const signupButton = document.getElementById("signup-button");
 signupButton.onclick = () => {
+  let User = getSignupInfo();
   try {
     const response = fetch("http://localhost:3000/users/", {
       method: "GET",
@@ -58,7 +30,7 @@ signupButton.onclick = () => {
     if (response.ok) {
       document
         .getElementById("wrong-credetials-div")
-        .innerHTML("<h5>account with email already exists</h5>");
+        .innerHTML("<p>account with email already exists</p>");
     } else {
       fetch("http://localhost:3000/users/", {
         method: "POST",
@@ -72,5 +44,8 @@ signupButton.onclick = () => {
         }),
       });
     }
-  } catch (error) {}
+  } catch (error) {
+    document.getElementById("wrong-credentials-div").innerHTML =
+      "<p>account with email already exists</p>";
+  }
 };

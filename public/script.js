@@ -173,3 +173,10 @@ fetch("http://localhost:3000/locations")
   .catch((error) => {
     console.error("There was a problem with the fetch operation:", error);
   });
+
+//change user name and user email values from local storage
+document.getElementById("user-name").innerHTML =
+  localStorage.getItem("userName");
+document.getElementById("user-email").innerHTML =
+  localStorage.getItem("userEmail");
+localStorage.clear();
